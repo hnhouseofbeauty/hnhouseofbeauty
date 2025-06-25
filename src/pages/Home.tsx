@@ -25,10 +25,10 @@ const Home = () => {
   ];
 
   return (
-    <div className="pt-16">
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-light-beige/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-16 w-full">
+      {/* Hero Section - Optimized for fast loading */}
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-light-beige/30 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column */}
             <div className="text-center lg:text-left animate-on-scroll">
@@ -50,7 +50,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Column */}
+            {/* Right Column - Optimized image loading */}
             <div className="flex justify-center animate-on-scroll">
               <div className="relative">
                 <div className="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-2 border-gold/30 shadow-2xl">
@@ -58,6 +58,8 @@ const Home = () => {
                     src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                     alt="Beautiful woman"
                     className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="sync"
                   />
                 </div>
               </div>
@@ -67,7 +69,7 @@ const Home = () => {
       </section>
 
       {/* Metrics Bar */}
-      <section className="py-12 bg-white border-y border-gold/20">
+      <section className="py-12 bg-white border-y border-gold/20 w-full">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center">
             <div className="animate-on-scroll">
@@ -88,7 +90,7 @@ const Home = () => {
       </section>
 
       {/* What We Provide */}
-      <section className="py-20 bg-light-beige/50">
+      <section className="py-20 bg-light-beige/50 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-charcoal mb-4">
@@ -99,14 +101,18 @@ const Home = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <ServiceCard key={index} {...service} />
+              <div key={index} className="service-card animate-on-scroll text-center">
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-2xl font-playfair font-bold text-charcoal mb-3">{service.title}</h3>
+                <p className="text-charcoal/70">{service.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Who Are We */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll">
@@ -131,6 +137,7 @@ const Home = () => {
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                   alt="Beauty salon interior"
                   className="w-full h-96 object-cover"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -139,7 +146,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-light-beige">
+      <section className="py-20 bg-light-beige w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-charcoal mb-4">
@@ -148,12 +155,24 @@ const Home = () => {
             <div className="gold-divider"></div>
           </div>
           
-          <TestimonialCarousel />
+          <div className="animate-on-scroll">
+            <div className="testimonial-card max-w-2xl mx-auto text-center">
+              <div className="flex justify-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-gold fill-current" />
+                ))}
+              </div>
+              <p className="text-lg text-charcoal/80 mb-4 italic">
+                "Amazing service and beautiful results! I always leave feeling pampered and gorgeous."
+              </p>
+              <p className="font-semibold text-charcoal">- Happy Client</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CTA Strip */}
-      <section className="py-16 bg-gold">
+      <section className="py-16 bg-gold w-full">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-playfair font-bold text-white mb-6">
             Ready to feel gorgeous?
