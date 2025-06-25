@@ -50,13 +50,13 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Column - Optimized image loading */}
+            {/* Right Column - Updated with salon interior image */}
             <div className="flex justify-center animate-on-scroll">
               <div className="relative">
                 <div className="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-2 border-gold/30 shadow-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                    alt="Beautiful woman"
+                    src="/lovable-uploads/c8018738-588a-49e2-bb14-5ff59094e4d5.png"
+                    alt="H & N House of Beauty salon interior"
                     className="w-full h-full object-cover"
                     loading="eager"
                     decoding="sync"

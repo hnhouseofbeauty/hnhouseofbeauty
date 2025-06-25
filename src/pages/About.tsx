@@ -21,12 +21,12 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Profile Image */}
+            {/* Profile Image - Updated with Nthabi's photo */}
             <div className="flex justify-center animate-on-scroll">
               <div className="relative">
                 <div className="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-2 border-gold/30 shadow-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    src="/lovable-uploads/54a810be-647d-41f9-82bd-53e68497baaa.png"
                     alt="Nthabi - Founder & Stylist"
                     className="w-full h-full object-cover"
                   />
