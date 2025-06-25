@@ -4,17 +4,18 @@ import { useState } from 'react';
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Placeholder images - user will replace these
+  // Real images from H & N House of Beauty work
   const galleryImages = [
-    "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1527576539890-dfa815648363?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1518005020951-eccb494ad742?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1527576539890-dfa815648363?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "/lovable-uploads/7aac1eb8-4dd9-4958-96e2-946e711f3a0c.png",
+    "/lovable-uploads/b43e6c60-6e89-4152-a862-ca55445dfcbb.png",
+    "/lovable-uploads/5d70c0b9-b882-430e-8195-dfecebbf9f38.png",
+    "/lovable-uploads/d490a04e-835f-4566-8f30-32c210bb63bd.png",
+    "/lovable-uploads/f690cf11-3292-491d-91b5-964c8ea97848.png",
+    "/lovable-uploads/9d794886-9cd2-4414-99c7-42ab2c02ed88.png",
+    "/lovable-uploads/1835a09f-78ee-40a2-9e07-da06d36a59fe.png",
+    "/lovable-uploads/0b31003d-0f77-4db0-b3cd-90627c698981.png",
+    "/lovable-uploads/48302d2d-10dd-4801-8b09-a3a0220826d4.png",
+    "/lovable-uploads/6d5daaaa-7051-4a2f-bc23-9540481abca5.png"
   ];
 
   return (
@@ -35,19 +36,21 @@ const Gallery = () => {
       {/* Gallery Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {galleryImages.map((image, index) => (
               <div 
                 key={index} 
-                className="break-inside-avoid animate-on-scroll cursor-pointer hover:opacity-90 transition-opacity"
+                className="animate-on-scroll cursor-pointer group"
                 onClick={() => setSelectedImage(image)}
               >
-                <img
-                  src={image}
-                  alt={`Gallery image ${index + 1}`}
-                  className="w-full rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
-                  loading="lazy"
-                />
+                <div className="aspect-square overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
+                  <img
+                    src={image}
+                    alt={`Gallery image ${index + 1} - H & N House of Beauty work`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -68,7 +71,7 @@ const Gallery = () => {
             />
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 text-white text-2xl hover:text-gold transition-colors"
+              className="absolute top-4 right-4 text-white text-2xl hover:text-gold transition-colors bg-black/50 rounded-full w-10 h-10 flex items-center justify-center"
             >
               ×
             </button>
