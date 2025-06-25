@@ -19,16 +19,44 @@ const Book = () => {
     notes: ''
   });
 
-  const services = [
-    'Manicure',
-    'Pedicure', 
-    'Lashes',
-    'Make-up',
-    'Massages',
-    'Skin-tag Removal',
-    'Organic Skincare',
-    'Consultation'
-  ];
+  const serviceCategories = {
+    'Nail Services': [
+      'Manicure - Gel Polish',
+      'Manicure - Regular Polish', 
+      'Manicure - French Polish',
+      'Nail Art & Design'
+    ],
+    'Pedicure Services': [
+      'Basic Pedicure',
+      'Spa Pedicure',
+      'Gel Pedicure',
+      'Medical Pedicure'
+    ],
+    'Lash Services': [
+      'Classic Lashes',
+      'Volume Lashes',
+      'Lash Lift & Tint',
+      'Lash Removal'
+    ],
+    'Makeup Services': [
+      'Special Occasion Makeup',
+      'Bridal Makeup',
+      'Makeup Lessons',
+      'Makeup Touch-up'
+    ],
+    'Massage & Wellness': [
+      'Relaxation Massage',
+      'Deep Tissue Massage',
+      'Hot Stone Massage',
+      'Reflexology'
+    ],
+    'Skin Services': [
+      'Skin-tag Removal',
+      'Organic Skincare Treatment',
+      'Facial Cleansing',
+      'Skin Consultation'
+    ]
+  };
 
   const timeSlots = [
     '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
@@ -115,14 +143,21 @@ Notes: ${formData.notes}
                 <div>
                   <Label htmlFor="service">Service</Label>
                   <Select onValueChange={(value) => setFormData({...formData, service: value})}>
-                    <SelectTrigger>
+                    <SelectTrigger className="bg-white">
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
-                    <SelectContent>
-                      {services.map((service) => (
-                        <SelectItem key={service} value={service}>
-                          {service}
-                        </SelectItem>
+                    <SelectContent className="bg-white border shadow-lg max-h-64 overflow-y-auto">
+                      {Object.entries(serviceCategories).map(([category, services]) => (
+                        <div key={category}>
+                          <div className="px-2 py-1.5 text-sm font-semibold text-gold bg-light-beige/50">
+                            {category}
+                          </div>
+                          {services.map((service) => (
+                            <SelectItem key={service} value={service} className="pl-4">
+                              {service}
+                            </SelectItem>
+                          ))}
+                        </div>
                       ))}
                     </SelectContent>
                   </Select>
@@ -136,15 +171,16 @@ Notes: ${formData.notes}
                       value={formData.date}
                       onChange={(e) => setFormData({...formData, date: e.target.value})}
                       min={new Date().toISOString().split('T')[0]}
+                      className="bg-white"
                     />
                   </div>
                   <div>
                     <Label htmlFor="time">Time</Label>
                     <Select onValueChange={(value) => setFormData({...formData, time: value})}>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-white">
                         <SelectValue placeholder="Select time" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="bg-white border shadow-lg">
                         {timeSlots.map((time) => (
                           <SelectItem key={time} value={time}>
                             {time}
@@ -161,6 +197,7 @@ Notes: ${formData.notes}
                     placeholder="Enter your full name"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="bg-white"
                   />
                 </div>
 
@@ -170,6 +207,7 @@ Notes: ${formData.notes}
                     placeholder="Your phone number"
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="bg-white"
                   />
                 </div>
 
@@ -180,6 +218,7 @@ Notes: ${formData.notes}
                     value={formData.notes}
                     onChange={(e) => setFormData({...formData, notes: e.target.value})}
                     rows={3}
+                    className="bg-white"
                   />
                 </div>
 
@@ -209,14 +248,21 @@ Notes: ${formData.notes}
                   <div>
                     <Label htmlFor="form-service">Service</Label>
                     <Select onValueChange={(value) => setFormData({...formData, service: value})}>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-white">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
-                      <SelectContent>
-                        {services.map((service) => (
-                          <SelectItem key={service} value={service}>
-                            {service}
-                          </SelectItem>
+                      <SelectContent className="bg-white border shadow-lg max-h-64 overflow-y-auto">
+                        {Object.entries(serviceCategories).map(([category, services]) => (
+                          <div key={category}>
+                            <div className="px-2 py-1.5 text-sm font-semibold text-gold bg-light-beige/50">
+                              {category}
+                            </div>
+                            {services.map((service) => (
+                              <SelectItem key={service} value={service} className="pl-4">
+                                {service}
+                              </SelectItem>
+                            ))}
+                          </div>
                         ))}
                       </SelectContent>
                     </Select>
@@ -230,15 +276,16 @@ Notes: ${formData.notes}
                         value={formData.date}
                         onChange={(e) => setFormData({...formData, date: e.target.value})}
                         min={new Date().toISOString().split('T')[0]}
+                        className="bg-white"
                       />
                     </div>
                     <div>
                       <Label htmlFor="form-time">Time</Label>
                       <Select onValueChange={(value) => setFormData({...formData, time: value})}>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-white">
                           <SelectValue placeholder="Select time" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-white border shadow-lg">
                           {timeSlots.map((time) => (
                             <SelectItem key={time} value={time}>
                               {time}
@@ -256,6 +303,7 @@ Notes: ${formData.notes}
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                       required
+                      className="bg-white"
                     />
                   </div>
 
@@ -266,6 +314,7 @@ Notes: ${formData.notes}
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
                       required
+                      className="bg-white"
                     />
                   </div>
 
@@ -277,6 +326,7 @@ Notes: ${formData.notes}
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       required
+                      className="bg-white"
                     />
                   </div>
 
@@ -287,6 +337,7 @@ Notes: ${formData.notes}
                       value={formData.notes}
                       onChange={(e) => setFormData({...formData, notes: e.target.value})}
                       rows={3}
+                      className="bg-white"
                     />
                   </div>
 
