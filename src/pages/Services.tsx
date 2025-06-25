@@ -1,6 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Services = () => {
   const services = [
@@ -48,8 +49,18 @@ const Services = () => {
     }
   ];
 
+  useEffect(() => {
+    // Trigger animations for this page
+    const timer = setTimeout(() => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach(el => el.classList.add('animate'));
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="pt-16">
+    <div className="pt-16 min-h-screen">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-light-beige/30 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

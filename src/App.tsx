@@ -19,6 +19,7 @@ const queryClient = new QueryClient();
 
 const App = () => {
   useEffect(() => {
+    // Initialize scroll animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -34,10 +35,29 @@ const App = () => {
       });
     }, observerOptions);
 
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    animateElements.forEach((el) => observer.observe(el));
+    // Observe all elements with animation class
+    const setupAnimations = () => {
+      const animateElements = document.querySelectorAll('.animate-on-scroll');
+      animateElements.forEach((el) => {
+        observer.observe(el);
+      });
+    };
 
-    return () => observer.disconnect();
+    // Setup animations on initial load
+    setupAnimations();
+    
+    // Re-setup animations when route changes
+    const handleRouteChange = () => {
+      setTimeout(setupAnimations, 100);
+    };
+
+    // Listen for route changes
+    window.addEventListener('popstate', handleRouteChange);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('popstate', handleRouteChange);
+    };
   }, []);
 
   return (
@@ -46,7 +66,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col bg-white">
             <Navigation />
             <main className="flex-1">
               <Routes>
