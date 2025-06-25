@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -27,6 +26,24 @@ const Services = () => {
         { name: 'Normal paint', price: 'R80' },
         { name: 'Normal paint & pedi', price: 'R80' },
         { name: 'Buff and shine + pedicure', price: 'R270' }
+      ]
+    },
+    {
+      category: 'WAXING',
+      services: [
+        { name: 'Brow/Lip/Chin/Nose/Ears', price: 'R80' },
+        { name: 'Side burns', price: 'R80' },
+        { name: 'Full face wax', price: 'R200' },
+        { name: 'Under Arm', price: 'R100' },
+        { name: 'Stomach Line', price: 'R100' },
+        { name: 'Bikini Line', price: 'R150' },
+        { name: 'Brazilian', price: 'R220' },
+        { name: 'Hollywood', price: 'R250' },
+        { name: 'Half leg wax', price: 'R170' },
+        { name: 'Full leg wax', price: 'R250' },
+        { name: 'Full Arm', price: 'R210' },
+        { name: 'Back', price: 'R200' },
+        { name: 'Chest', price: 'R170' }
       ]
     },
     {
