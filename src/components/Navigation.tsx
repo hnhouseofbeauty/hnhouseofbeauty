@@ -25,8 +25,13 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-playfair font-bold text-charcoal">
+          <Link to="/" className="flex items-center space-x-3">
+            <img 
+              src="/lovable-uploads/1c2344fe-4815-4661-a0b2-1cf3d682f5b5.png" 
+              alt="H & N House of Beauty Logo" 
+              className="h-10 w-auto"
+            />
+            <div className="text-xl font-playfair font-bold text-charcoal hidden sm:block">
               H & N House of Beauty
             </div>
           </Link>

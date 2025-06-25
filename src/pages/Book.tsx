@@ -1,82 +1,84 @@
 
 import { useState } from 'react';
+import { Calendar, Clock, User, Phone, Mail, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calendar } from '@/components/ui/calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { CalendarIcon } from 'lucide-react';
-import { format } from 'date-fns';
-import { cn } from '@/lib/utils';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Book = () => {
-  const [date, setDate] = useState<Date>();
-  const [selectedService, setSelectedService] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
   const [formData, setFormData] = useState({
+    service: '',
+    date: '',
+    time: '',
     name: '',
     phone: '',
-    email: ''
+    email: '',
+    notes: ''
   });
 
   const services = [
     'Manicure',
-    'Pedicure', 
+    'Pedicure',
     'Lashes',
     'Make-up',
     'Massages',
     'Skin-tag Removal',
-    'Organic Skincare'
+    'Organic Skincare',
+    'Consultation'
   ];
 
   const timeSlots = [
     '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-    '12:00', '12:30', '14:00', '14:30', '15:00', '15:30',
-    '16:00', '16:30', '17:00'
+    '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
+    '15:00', '15:30', '16:00', '16:30', '17:00'
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const handleWhatsAppBooking = () => {
+    const { service, date, time, name } = formData;
+    
+    if (!service || !date || !time || !name) {
+      alert('Please fill in at least your name, service, date, and time to proceed with WhatsApp booking.');
+      return;
+    }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Create WhatsApp message
-    const whatsappMessage = `Hi, I'd like to book ${selectedService} on ${date ? format(date, 'PPP') : ''} at ${selectedTime}. 
-    
-Name: ${formData.name}
-Phone: ${formData.phone}
-Email: ${formData.email}`;
-    
-    const whatsappUrl = `https://wa.me/+27123456789?text=${encodeURIComponent(whatsappMessage)}`;
+    const message = `Hi! I'd like to book an appointment at H & N House of Beauty.
+
+Details:
+Service: ${service}
+Date: ${date}
+Time: ${time}
+Name: ${name}
+${formData.phone ? `Phone: ${formData.phone}` : ''}
+${formData.notes ? `Notes: ${formData.notes}` : ''}
+
+Please confirm my appointment. Thank you!`;
+
+    const whatsappUrl = `https://wa.me/+27123456789?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create email body
+    // Here you would typically send to your backend
+    const emailSubject = 'New Appointment Request - H & N House of Beauty';
     const emailBody = `
-New Appointment Booking Request
+New appointment request:
 
-Service: ${selectedService}
-Date: ${date ? format(date, 'PPP') : ''}
-Time: ${selectedTime}
-
-Client Details:
+Service: ${formData.service}
+Date: ${formData.date}
+Time: ${formData.time}
 Name: ${formData.name}
 Phone: ${formData.phone}
 Email: ${formData.email}
+Notes: ${formData.notes}
     `;
 
-    // Create mailto link
-    const mailtoUrl = `mailto:hnhouseofbeauty@gmail.com?subject=Appointment Booking - ${selectedService}&body=${encodeURIComponent(emailBody)}`;
-    window.location.href = mailtoUrl;
+    const mailtoLink = `mailto:hnhouseofbeauty@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -85,154 +87,250 @@ Email: ${formData.email}
       <section className="py-20 bg-gradient-to-b from-light-beige/30 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-playfair font-bold text-charcoal mb-6 animate-on-scroll">
-            Book Appointment
+            Book Your Appointment
           </h1>
           <div className="gold-divider"></div>
           <p className="text-xl text-charcoal/70 max-w-3xl mx-auto animate-on-scroll">
-            Schedule your beauty treatment with us. Choose your preferred service, date, and time.
+            Schedule your beauty treatment with our expert team. Choose your preferred booking method below.
           </p>
         </div>
       </section>
 
-      {/* Booking Form */}
+      {/* Booking Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-light-beige/20 p-8 rounded-lg border border-gold/10 animate-on-scroll">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Service Selection */}
-              <div className="space-y-2">
-                <Label htmlFor="service">Select Service</Label>
-                <Select value={selectedService} onValueChange={setSelectedService}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose a service" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {services.map((service) => (
-                      <SelectItem key={service} value={service}>
-                        {service}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            {/* Quick WhatsApp Booking */}
+            <Card className="animate-on-scroll">
+              <CardHeader>
+                <CardTitle className="flex items-center text-2xl font-playfair text-charcoal">
+                  <MessageCircle className="mr-3 text-gold" size={28} />
+                  Quick WhatsApp Booking
+                </CardTitle>
+                <CardDescription>
+                  Fill in your details and book instantly via WhatsApp
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="service">Service</Label>
+                  <Select onValueChange={(value) => setFormData({...formData, service: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a service" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {services.map((service) => (
+                        <SelectItem key={service} value={service}>
+                          {service}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              {/* Date Selection */}
-              <div className="space-y-2">
-                <Label>Select Date</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date ? format(date, "PPP") : <span>Pick a date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      disabled={(date) => date < new Date()}
-                      initialFocus
-                      className="pointer-events-auto"
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="date">Date</Label>
+                    <Input
+                      type="date"
+                      value={formData.date}
+                      onChange={(e) => setFormData({...formData, date: e.target.value})}
+                      min={new Date().toISOString().split('T')[0]}
                     />
-                  </PopoverContent>
-                </Popover>
-              </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="time">Time</Label>
+                    <Select onValueChange={(value) => setFormData({...formData, time: value})}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select time" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {timeSlots.map((time) => (
+                          <SelectItem key={time} value={time}>
+                            {time}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
 
-              {/* Time Selection */}
-              <div className="space-y-2">
-                <Label htmlFor="time">Select Time</Label>
-                <Select value={selectedTime} onValueChange={setSelectedTime}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose a time" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {timeSlots.map((time) => (
-                      <SelectItem key={time} value={time}>
-                        {time}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Personal Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                <div>
+                  <Label htmlFor="name">Your Name</Label>
                   <Input
-                    id="name"
-                    name="name"
+                    placeholder="Enter your full name"
                     value={formData.name}
-                    onChange={handleInputChange}
-                    required
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
+
+                <div>
+                  <Label htmlFor="phone">Phone Number (Optional)</Label>
                   <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
+                    placeholder="Your phone number"
                     value={formData.phone}
-                    onChange={handleInputChange}
-                    required
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
                   />
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
+                <div>
+                  <Label htmlFor="notes">Special Requests (Optional)</Label>
+                  <Textarea
+                    placeholder="Any special requests or questions?"
+                    value={formData.notes}
+                    onChange={(e) => setFormData({...formData, notes: e.target.value})}
+                    rows={3}
+                  />
+                </div>
 
-              {/* Submit Buttons */}
-              <div className="flex flex-col space-y-4">
                 <Button 
-                  type="submit"
-                  className="bg-gold hover:bg-gold/90 text-white w-full py-6 text-lg rounded-full"
-                  disabled={!selectedService || !date || !selectedTime || !formData.name || !formData.phone}
+                  onClick={handleWhatsAppBooking}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg rounded-full"
                 >
+                  <MessageCircle className="mr-2" size={20} />
                   Book via WhatsApp
                 </Button>
-                
-                <Button 
-                  type="button"
-                  onClick={handleEmailSubmit}
-                  variant="outline"
-                  className="border-gold text-gold hover:bg-gold hover:text-white w-full py-6 text-lg rounded-full"
-                  disabled={!selectedService || !date || !selectedTime || !formData.name || !formData.phone}
-                >
-                  Book via Email
-                </Button>
-              </div>
-            </form>
-          </div>
+              </CardContent>
+            </Card>
 
-          {/* Contact Information */}
-          <div className="mt-12 text-center animate-on-scroll">
-            <h3 className="text-2xl font-playfair font-semibold text-charcoal mb-6">
-              Contact Details
-            </h3>
-            <div className="space-y-2 text-charcoal/70">
-              <p>📍 106 Hennie Alberts Street, Brackenhurst, Alberton</p>
-              <p>📧 hnhouseofbeauty@gmail.com</p>
-              <p>📱 WhatsApp bookings available</p>
+            {/* Traditional Form Booking */}
+            <Card className="animate-on-scroll">
+              <CardHeader>
+                <CardTitle className="flex items-center text-2xl font-playfair text-charcoal">
+                  <Calendar className="mr-3 text-gold" size={28} />
+                  Traditional Booking
+                </CardTitle>
+                <CardDescription>
+                  Submit your appointment request via email
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <div>
+                    <Label htmlFor="form-service">Service</Label>
+                    <Select onValueChange={(value) => setFormData({...formData, service: value})}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {services.map((service) => (
+                          <SelectItem key={service} value={service}>
+                            {service}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="form-date">Date</Label>
+                      <Input
+                        type="date"
+                        value={formData.date}
+                        onChange={(e) => setFormData({...formData, date: e.target.value})}
+                        min={new Date().toISOString().split('T')[0]}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="form-time">Time</Label>
+                      <Select onValueChange={(value) => setFormData({...formData, time: value})}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select time" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {timeSlots.map((time) => (
+                            <SelectItem key={time} value={time}>
+                              {time}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="form-name">Full Name</Label>
+                    <Input
+                      placeholder="Enter your full name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="form-phone">Phone Number</Label>
+                    <Input
+                      placeholder="Your phone number"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="form-email">Email Address</Label>
+                    <Input
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="form-notes">Additional Notes</Label>
+                    <Textarea
+                      placeholder="Any special requests or questions?"
+                      value={formData.notes}
+                      onChange={(e) => setFormData({...formData, notes: e.target.value})}
+                      rows={3}
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit"
+                    className="w-full bg-gold hover:bg-gold/90 text-white py-6 text-lg rounded-full"
+                  >
+                    <Mail className="mr-2" size={20} />
+                    Submit Booking Request
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Information */}
+      <section className="py-16 bg-light-beige">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+          <h2 className="text-3xl font-playfair font-bold text-charcoal mb-6">
+            Contact Information
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <h3 className="font-semibold text-charcoal mb-2">Address</h3>
+              <p className="text-charcoal/70">
+                106 Hennie Alberts Street<br />
+                Brackenhurst, Alberton
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-charcoal mb-2">Email</h3>
+              <p className="text-charcoal/70">hnhouseofbeauty@gmail.com</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-charcoal mb-2">WhatsApp</h3>
+              <p className="text-charcoal/70">+27 123 456 789</p>
             </div>
           </div>
+          <p className="text-charcoal/70">
+            We typically respond to booking requests within 2-4 hours during business hours.
+          </p>
         </div>
       </section>
     </div>

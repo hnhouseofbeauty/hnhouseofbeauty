@@ -71,13 +71,17 @@ const Home = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center">
             <div className="animate-on-scroll">
-              <div className="text-3xl font-playfair font-bold text-gold">20+</div>
-              <div className="text-charcoal/70">Years of Experience</div>
+              <div className="flex justify-center mb-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-6 h-6 text-gold fill-current" />
+                ))}
+              </div>
+              <div className="text-lg font-playfair font-semibold text-charcoal">5 Star Reviews on Google</div>
             </div>
             <div className="hidden md:block w-px h-12 bg-gold/30"></div>
             <div className="animate-on-scroll">
-              <div className="text-3xl font-playfair font-bold text-gold">3k+</div>
-              <div className="text-charcoal/70">Happy Customers</div>
+              <div className="text-3xl font-playfair font-bold text-gold">#1</div>
+              <div className="text-charcoal/70">Choice in the Area</div>
             </div>
           </div>
         </div>
