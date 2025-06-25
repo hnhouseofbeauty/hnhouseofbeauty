@@ -1,4 +1,8 @@
 
+import { Sparkles, Heart, Star } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+
 const About = () => {
   return (
     <div className="pt-16">
@@ -80,7 +84,9 @@ const About = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center animate-on-scroll">
-              <div className="text-4xl mb-4">✨</div>
+              <div className="flex justify-center mb-4">
+                <Sparkles className="w-12 h-12 text-gold" />
+              </div>
               <h3 className="text-2xl font-playfair font-semibold text-charcoal mb-4">Excellence</h3>
               <p className="text-charcoal/70">
                 We strive for perfection in every service, ensuring each client receives exceptional care and results.
@@ -88,7 +94,9 @@ const About = () => {
             </div>
             
             <div className="text-center animate-on-scroll">
-              <div className="text-4xl mb-4">💝</div>
+              <div className="flex justify-center mb-4">
+                <Heart className="w-12 h-12 text-gold" />
+              </div>
               <h3 className="text-2xl font-playfair font-semibold text-charcoal mb-4">Care</h3>
               <p className="text-charcoal/70">
                 Your comfort and satisfaction are our top priorities. We create a nurturing environment for all.
@@ -96,7 +104,9 @@ const About = () => {
             </div>
             
             <div className="text-center animate-on-scroll">
-              <div className="text-4xl mb-4">🌟</div>
+              <div className="flex justify-center mb-4">
+                <Star className="w-12 h-12 text-gold" />
+              </div>
               <h3 className="text-2xl font-playfair font-semibold text-charcoal mb-4">Innovation</h3>
               <p className="text-charcoal/70">
                 We embrace the latest techniques and trends to bring you cutting-edge beauty solutions.

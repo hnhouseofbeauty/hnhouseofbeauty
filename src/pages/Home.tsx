@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Play, Star } from 'lucide-react';
+import { Play, Star, Sparkles, Eye, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ServiceCard from '@/components/ServiceCard';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
@@ -10,17 +10,17 @@ const Home = () => {
     {
       title: 'Manicure',
       description: 'Professional nail care and beautiful designs',
-      icon: '💅'
+      icon: <Sparkles className="w-8 h-8 text-gold" />
     },
     {
       title: 'Lashes',
       description: 'Extensions, lifts, and tinting services', 
-      icon: '👁️'
+      icon: <Eye className="w-8 h-8 text-gold" />
     },
     {
       title: 'Massages',
       description: 'Relaxing therapeutic massage treatments',
-      icon: '💆'
+      icon: <Heart className="w-8 h-8 text-gold" />
     }
   ];
 
@@ -102,7 +102,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <div key={index} className="service-card animate-on-scroll text-center">
-                <div className="text-4xl mb-4">{service.icon}</div>
+                <div className="flex justify-center mb-4">{service.icon}</div>
                 <h3 className="text-2xl font-playfair font-bold text-charcoal mb-3">{service.title}</h3>
                 <p className="text-charcoal/70">{service.description}</p>
               </div>
