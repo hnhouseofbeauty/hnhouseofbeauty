@@ -21,7 +21,7 @@ const Book = () => {
 
   const services = [
     'Manicure',
-    'Pedicure',
+    'Pedicure', 
     'Lashes',
     'Make-up',
     'Massages',
@@ -63,7 +63,6 @@ Please confirm my appointment. Thank you!`;
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Here you would typically send to your backend
     const emailSubject = 'New Appointment Request - H & N House of Beauty';
     const emailBody = `
 New appointment request:

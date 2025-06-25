@@ -42,7 +42,7 @@ const About = () => {
               <div className="space-y-6 text-lg text-charcoal/70 leading-relaxed">
                 <p>
                   Welcome to H & N House of Beauty, where passion meets expertise. As the founder and lead stylist, 
-                  I have dedicated over 20 years to perfecting the art of beauty and helping clients discover their 
+                  I have dedicated over 15 years to perfecting the art of beauty and helping clients discover their 
                   most radiant selves.
                 </p>
                 
