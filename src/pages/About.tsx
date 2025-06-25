@@ -1,4 +1,3 @@
-
 import { Sparkles, Heart, Star } from 'lucide-react';
 
 const About = () => {
@@ -37,32 +36,28 @@ const About = () => {
             {/* Profile Content */}
             <div className="animate-on-scroll">
               <h2 className="text-4xl font-playfair font-bold text-charcoal mb-6">
-                Nthabi – Founder & Stylist
+                Hey there,
               </h2>
               <div className="gold-divider lg:mx-0"></div>
               
               <div className="space-y-6 text-lg text-charcoal/70 leading-relaxed">
                 <p>
-                  Welcome to H & N House of Beauty, where passion meets expertise. As the founder and lead stylist, 
-                  I have dedicated over 15 years to perfecting the art of beauty and helping clients discover their 
-                  most radiant selves.
+                  I'm Nthabi, your go-to stylist for nails, lashes, makeup, and massages. At H & N House of Beauty, 
+                  we're all about enhancing your natural beauty and giving you a moment of relaxation.
                 </p>
                 
                 <p>
-                  My journey in the beauty industry began with a simple belief: every person deserves to feel 
-                  beautiful and confident. This philosophy drives everything we do at our salon, from the carefully 
-                  curated services we offer to the welcoming atmosphere we create.
+                  Let's glam up your nails, frame your eyes, and make your features pop with tailored makeup. 
+                  And of course, unwind with our soothing massages.
                 </p>
                 
                 <p>
-                  Our team is committed to staying at the forefront of beauty trends and techniques, ensuring 
-                  that every client receives the highest quality care. We specialize in manicures, pedicures, 
-                  lash services, makeup artistry, therapeutic massages, and organic skincare treatments.
+                  Your beauty and well-being are my top priorities.
                 </p>
                 
-                <p>
-                  Located in the heart of Brackenhurst, Alberton, our salon is more than just a place for beauty 
-                  treatments – it's a sanctuary where you can relax, rejuvenate, and rediscover your inner glow.
+                <p className="font-semibold text-charcoal">
+                  See you soon,<br />
+                  Nthabi
                 </p>
               </div>
             </div>
