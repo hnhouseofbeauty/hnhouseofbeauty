@@ -70,8 +70,8 @@ ${formData.message}
                 <Phone className="w-8 h-8 text-gold mx-auto mb-4" />
                 <h3 className="font-playfair font-semibold text-charcoal mb-2">Call Us</h3>
                 <p className="text-charcoal/70 text-sm">
-                  +27 123 456 789<br />
-                  <span className="text-xs">WhatsApp Available</span>
+                  063 859 2913<br />
+                  <span className="text-xs">WhatsApp: 060 416 6801</span>
                 </p>
               </CardContent>
             </Card>
@@ -220,7 +220,7 @@ ${formData.message}
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg rounded-full"
             >
               <a 
-                href="https://wa.me/+27123456789?text=Hi, I'd like to book an appointment at H & N House of Beauty"
+                href="https://wa.me/27604166801?text=Hi, I'd like to book an appointment at H & N House of Beauty"
                 target="_blank"
                 rel="noopener noreferrer"
               >

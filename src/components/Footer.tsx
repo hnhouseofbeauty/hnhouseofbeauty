@@ -56,6 +56,8 @@ const Footer = () => {
             <div className="space-y-2 text-charcoal/70">
               <p>106 Hennie Alberts Street</p>
               <p>Brackenhurst, Alberton</p>
+              <p>Phone: 063 859 2913</p>
+              <p>WhatsApp: 060 416 6801</p>
               <p>Email: hnhouseofbeauty@gmail.com</p>
             </div>
           </div>
