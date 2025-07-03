@@ -1,10 +1,7 @@
-
 import { Link } from 'react-router-dom';
 import { Instagram, Play } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="bg-light-beige">
+  return <footer className="bg-light-beige">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
@@ -16,12 +13,7 @@ const Footer = () => {
               Where we offer exquisite beauty services in Brackenhurst, Alberton
             </p>
             <div className="flex space-x-4">
-              <a
-                href="https://instagram.com/hnhouseofbeauty"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gold hover:text-gold/80 transition-colors"
-              >
+              <a href="https://instagram.com/hnhouseofbeauty" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-gold/80 transition-colors">
                 <Instagram size={24} />
               </a>
             </div>
@@ -64,13 +56,9 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gold/20 mt-8 pt-8 text-center">
-          <p className="text-charcoal/60">
-            © 2024 H & N House of Beauty. All rights reserved.
-          </p>
+          <p className="text-charcoal/60">Copyright © 2025 H &amp; N House of Beauty | Website built by Architeq Web Agency</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
