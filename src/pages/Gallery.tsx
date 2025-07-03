@@ -1,8 +1,24 @@
 
 import { useState } from 'react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useEffect } from 'react';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  useScrollAnimation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('animate-in-view');
+        }, index * 100);
+      });
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   // Updated gallery images
   const galleryImages = [
@@ -23,11 +39,11 @@ const Gallery = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-light-beige/30 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-playfair font-bold text-charcoal mb-6">
+          <h1 className="text-4xl md:text-6xl font-playfair font-bold text-charcoal mb-6 animate-fade-in-up">
             Gallery
           </h1>
           <div className="gold-divider"></div>
-          <p className="text-xl text-charcoal/70 max-w-3xl mx-auto">
+          <p className="text-xl text-charcoal/70 max-w-3xl mx-auto animate-fade-in-up animate-stagger-1">
             Explore our work and see the beautiful transformations we create for our valued clients.
           </p>
         </div>
@@ -40,14 +56,15 @@ const Gallery = () => {
             {galleryImages.map((image, index) => (
               <div 
                 key={index} 
-                className="cursor-pointer group"
+                className="cursor-pointer group animate-scale-in hover:shadow-2xl transition-all duration-500"
+                style={{animationDelay: `${index * 0.1}s`}}
                 onClick={() => setSelectedImage(image)}
               >
-                <div className="aspect-square overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
+                <div className="aspect-square overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
                   <img
                     src={image}
                     alt={`Gallery image ${index + 1} - H & N House of Beauty work`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="eager"
                   />
                 </div>
@@ -60,10 +77,10 @@ const Gallery = () => {
       {/* Lightbox */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 animate-fade-in-up"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-4xl max-h-full">
+          <div className="relative max-w-4xl max-h-full animate-scale-in">
             <img
               src={selectedImage}
               alt="Gallery image"
@@ -71,7 +88,7 @@ const Gallery = () => {
             />
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 text-white text-2xl hover:text-gold transition-colors bg-black/50 rounded-full w-10 h-10 flex items-center justify-center"
+              className="absolute top-4 right-4 text-white text-2xl hover:text-gold transition-colors bg-black/50 rounded-full w-10 h-10 flex items-center justify-center hover:scale-110 transition-all duration-300"
             >
               ×
             </button>

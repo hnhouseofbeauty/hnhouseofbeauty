@@ -1,8 +1,24 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useEffect } from 'react';
 
 const Services = () => {
+  useScrollAnimation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('animate-in-view');
+        }, index * 50);
+      });
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   const serviceCategories = [
     {
       category: 'NAILS',
@@ -103,26 +119,16 @@ const Services = () => {
     }
   ];
 
-  useEffect(() => {
-    // Trigger animations for this page
-    const timer = setTimeout(() => {
-      const elements = document.querySelectorAll('.animate-on-scroll');
-      elements.forEach(el => el.classList.add('animate'));
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="pt-16 min-h-screen">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-light-beige/30 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-playfair font-bold text-charcoal mb-6 animate-on-scroll">
+          <h1 className="text-4xl md:text-6xl font-playfair font-bold text-charcoal mb-6 animate-fade-in-up">
             Our Services
           </h1>
           <div className="gold-divider"></div>
-          <p className="text-xl text-charcoal/70 max-w-3xl mx-auto animate-on-scroll">
+          <p className="text-xl text-charcoal/70 max-w-3xl mx-auto animate-fade-in-up animate-stagger-1">
             Discover our comprehensive range of beauty services designed to enhance your natural beauty and provide the ultimate relaxation experience.
           </p>
         </div>
@@ -132,7 +138,7 @@ const Services = () => {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-charcoal mb-4 animate-on-scroll">
+            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-charcoal mb-4 animate-fade-in-up">
               PRICELIST
             </h2>
             <div className="gold-divider"></div>
@@ -140,7 +146,7 @@ const Services = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {serviceCategories.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="bg-light-beige/20 p-6 rounded-lg border border-gold/10 animate-on-scroll">
+              <div key={categoryIndex} className="bg-light-beige/20 p-6 rounded-lg border border-gold/10 animate-scale-in hover:shadow-lg hover:-translate-y-1 transition-all duration-300" style={{animationDelay: `${categoryIndex * 0.1}s`}}>
                 <h3 className="text-xl font-playfair font-bold text-gold mb-4 text-center">
                   {category.category}
                 </h3>
@@ -148,7 +154,7 @@ const Services = () => {
                 
                 <div className="space-y-3">
                   {category.services.map((service, serviceIndex) => (
-                    <div key={serviceIndex} className="flex justify-between items-center">
+                    <div key={serviceIndex} className="flex justify-between items-center hover:bg-gold/5 p-2 rounded transition-colors duration-200">
                       <span className="text-charcoal/80 text-sm">{service.name}</span>
                       <span className="text-charcoal font-semibold text-sm">{service.price}</span>
                     </div>
@@ -163,8 +169,8 @@ const Services = () => {
       {/* Special Offers Section */}
       <section className="py-16 bg-light-beige/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white/80 backdrop-blur-sm border border-gold/20 rounded-xl p-8 shadow-lg animate-on-scroll">
-            <div className="inline-block bg-gradient-to-r from-gold to-gold/80 text-white px-6 py-3 rounded-full mb-6 transform rotate-[-5deg]">
+          <div className="bg-white/80 backdrop-blur-sm border border-gold/20 rounded-xl p-8 shadow-lg animate-scale-in hover:shadow-xl hover:scale-105 transition-all duration-500">
+            <div className="inline-block bg-gradient-to-r from-gold to-gold/80 text-white px-6 py-3 rounded-full mb-6 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-300">
               <span className="text-2xl font-bold">20% OFF</span>
             </div>
             <h3 className="text-2xl font-playfair font-bold text-charcoal mb-4">
@@ -183,17 +189,17 @@ const Services = () => {
 
       {/* Additional Info */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in-up">
           <h2 className="text-3xl font-playfair font-bold text-charcoal mb-6">
             Additional Services & Information
           </h2>
           <div className="gold-divider"></div>
-          <div className="grid grid-cols-1 md:grid-cols-2 Gap-8 mb-8">
-            <div className="bg-light-beige/20 p-6 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div className="bg-light-beige/20 p-6 rounded-lg animate-fade-in-left hover:shadow-lg transition-all duration-300">
               <h4 className="font-playfair font-semibold text-charcoal mb-3">Full Pedicure Includes</h4>
               <p className="text-charcoal/70 text-sm italic">Foot filling and mini massage</p>
             </div>
-            <div className="bg-light-beige/20 p-6 rounded-lg">
+            <div className="bg-light-beige/20 p-6 rounded-lg animate-fade-in-right hover:shadow-lg transition-all duration-300">
               <h4 className="font-playfair font-semibold text-charcoal mb-3">Professional Service</h4>
               <p className="text-charcoal/70 text-sm">All services performed by skilled professionals using high-quality products</p>
             </div>
@@ -202,7 +208,7 @@ const Services = () => {
             Prices may vary based on specific requirements and treatment duration. 
             Contact us for detailed information and to discuss your beauty goals.
           </p>
-          <Button asChild className="bg-gold hover:bg-gold/90 text-white px-8 py-4 rounded-full">
+          <Button asChild className="bg-gold hover:bg-gold/90 text-white px-8 py-4 rounded-full transform hover:scale-105 transition-all duration-300">
             <Link to="/book">Book Your Service</Link>
           </Button>
         </div>
