@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Calendar, Clock, User, Phone, Mail, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,7 +6,6 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
 const Book = () => {
   const [formData, setFormData] = useState({
     service: '',
@@ -18,60 +16,26 @@ const Book = () => {
     email: '',
     notes: ''
   });
-
   const serviceCategories = {
-    'Nail Services': [
-      'Manicure - Gel Polish',
-      'Manicure - Regular Polish', 
-      'Manicure - French Polish',
-      'Nail Art & Design'
-    ],
-    'Pedicure Services': [
-      'Basic Pedicure',
-      'Spa Pedicure',
-      'Gel Pedicure',
-      'Medical Pedicure'
-    ],
-    'Lash Services': [
-      'Classic Lashes',
-      'Volume Lashes',
-      'Lash Lift & Tint',
-      'Lash Removal'
-    ],
-    'Makeup Services': [
-      'Special Occasion Makeup',
-      'Bridal Makeup',
-      'Makeup Lessons',
-      'Makeup Touch-up'
-    ],
-    'Massage & Wellness': [
-      'Relaxation Massage',
-      'Deep Tissue Massage',
-      'Hot Stone Massage',
-      'Reflexology'
-    ],
-    'Skin Services': [
-      'Skin-tag Removal',
-      'Organic Skincare Treatment',
-      'Facial Cleansing',
-      'Skin Consultation'
-    ]
+    'Nail Services': ['Manicure - Gel Polish', 'Manicure - Regular Polish', 'Manicure - French Polish', 'Nail Art & Design'],
+    'Pedicure Services': ['Basic Pedicure', 'Spa Pedicure', 'Gel Pedicure', 'Medical Pedicure'],
+    'Lash Services': ['Classic Lashes', 'Volume Lashes', 'Lash Lift & Tint', 'Lash Removal'],
+    'Makeup Services': ['Special Occasion Makeup', 'Bridal Makeup', 'Makeup Lessons', 'Makeup Touch-up'],
+    'Massage & Wellness': ['Relaxation Massage', 'Deep Tissue Massage', 'Hot Stone Massage', 'Reflexology'],
+    'Skin Services': ['Skin-tag Removal', 'Organic Skincare Treatment', 'Facial Cleansing', 'Skin Consultation']
   };
-
-  const timeSlots = [
-    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-    '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
-    '15:00', '15:30', '16:00', '16:30', '17:00'
-  ];
-
+  const timeSlots = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'];
   const handleWhatsAppBooking = () => {
-    const { service, date, time, name } = formData;
-    
+    const {
+      service,
+      date,
+      time,
+      name
+    } = formData;
     if (!service || !date || !time || !name) {
       alert('Please fill in at least your name, service, date, and time to proceed with WhatsApp booking.');
       return;
     }
-
     const message = `Hi! I'd like to book an appointment at H & N House of Beauty.
 
 Details:
@@ -83,14 +47,11 @@ ${formData.phone ? `Phone: ${formData.phone}` : ''}
 ${formData.notes ? `Notes: ${formData.notes}` : ''}
 
 Please confirm my appointment. Thank you!`;
-
     const whatsappUrl = `https://wa.me/+27123456789?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
-
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     const emailSubject = 'New Appointment Request - H & N House of Beauty';
     const emailBody = `
 New appointment request:
@@ -103,13 +64,10 @@ Phone: ${formData.phone}
 Email: ${formData.email}
 Notes: ${formData.notes}
     `;
-
     const mailtoLink = `mailto:hnhouseofbeauty@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     window.location.href = mailtoLink;
   };
-
-  return (
-    <div className="pt-16">
+  return <div className="pt-16">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-light-beige/30 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -142,23 +100,22 @@ Notes: ${formData.notes}
               <CardContent className="space-y-4">
                 <div>
                   <Label htmlFor="service">Service</Label>
-                  <Select onValueChange={(value) => setFormData({...formData, service: value})}>
+                  <Select onValueChange={value => setFormData({
+                  ...formData,
+                  service: value
+                })}>
                     <SelectTrigger className="bg-white">
                       <SelectValue placeholder="Select a service" />
                     </SelectTrigger>
                     <SelectContent className="bg-white border shadow-lg max-h-64 overflow-y-auto">
-                      {Object.entries(serviceCategories).map(([category, services]) => (
-                        <div key={category}>
+                      {Object.entries(serviceCategories).map(([category, services]) => <div key={category}>
                           <div className="px-2 py-1.5 text-sm font-semibold text-gold bg-light-beige/50">
                             {category}
                           </div>
-                          {services.map((service) => (
-                            <SelectItem key={service} value={service} className="pl-4">
+                          {services.map(service => <SelectItem key={service} value={service} className="pl-4">
                               {service}
-                            </SelectItem>
-                          ))}
-                        </div>
-                      ))}
+                            </SelectItem>)}
+                        </div>)}
                     </SelectContent>
                   </Select>
                 </div>
@@ -166,26 +123,24 @@ Notes: ${formData.notes}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="date">Date</Label>
-                    <Input
-                      type="date"
-                      value={formData.date}
-                      onChange={(e) => setFormData({...formData, date: e.target.value})}
-                      min={new Date().toISOString().split('T')[0]}
-                      className="bg-white"
-                    />
+                    <Input type="date" value={formData.date} onChange={e => setFormData({
+                    ...formData,
+                    date: e.target.value
+                  })} min={new Date().toISOString().split('T')[0]} className="bg-white" />
                   </div>
                   <div>
                     <Label htmlFor="time">Time</Label>
-                    <Select onValueChange={(value) => setFormData({...formData, time: value})}>
+                    <Select onValueChange={value => setFormData({
+                    ...formData,
+                    time: value
+                  })}>
                       <SelectTrigger className="bg-white">
                         <SelectValue placeholder="Select time" />
                       </SelectTrigger>
                       <SelectContent className="bg-white border shadow-lg">
-                        {timeSlots.map((time) => (
-                          <SelectItem key={time} value={time}>
+                        {timeSlots.map(time => <SelectItem key={time} value={time}>
                             {time}
-                          </SelectItem>
-                        ))}
+                          </SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
@@ -193,39 +148,29 @@ Notes: ${formData.notes}
 
                 <div>
                   <Label htmlFor="name">Your Name</Label>
-                  <Input
-                    placeholder="Enter your full name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="bg-white"
-                  />
+                  <Input placeholder="Enter your full name" value={formData.name} onChange={e => setFormData({
+                  ...formData,
+                  name: e.target.value
+                })} className="bg-white" />
                 </div>
 
                 <div>
                   <Label htmlFor="phone">Phone Number (Optional)</Label>
-                  <Input
-                    placeholder="Your phone number"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="bg-white"
-                  />
+                  <Input placeholder="Your phone number" value={formData.phone} onChange={e => setFormData({
+                  ...formData,
+                  phone: e.target.value
+                })} className="bg-white" />
                 </div>
 
                 <div>
                   <Label htmlFor="notes">Special Requests (Optional)</Label>
-                  <Textarea
-                    placeholder="Any special requests or questions?"
-                    value={formData.notes}
-                    onChange={(e) => setFormData({...formData, notes: e.target.value})}
-                    rows={3}
-                    className="bg-white"
-                  />
+                  <Textarea placeholder="Any special requests or questions?" value={formData.notes} onChange={e => setFormData({
+                  ...formData,
+                  notes: e.target.value
+                })} rows={3} className="bg-white" />
                 </div>
 
-                <Button 
-                  onClick={handleWhatsAppBooking}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg rounded-full"
-                >
+                <Button onClick={handleWhatsAppBooking} className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg rounded-full">
                   <MessageCircle className="mr-2" size={20} />
                   Book via WhatsApp
                 </Button>
@@ -247,23 +192,22 @@ Notes: ${formData.notes}
                 <form onSubmit={handleFormSubmit} className="space-y-4">
                   <div>
                     <Label htmlFor="form-service">Service</Label>
-                    <Select onValueChange={(value) => setFormData({...formData, service: value})}>
+                    <Select onValueChange={value => setFormData({
+                    ...formData,
+                    service: value
+                  })}>
                       <SelectTrigger className="bg-white">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                       <SelectContent className="bg-white border shadow-lg max-h-64 overflow-y-auto">
-                        {Object.entries(serviceCategories).map(([category, services]) => (
-                          <div key={category}>
+                        {Object.entries(serviceCategories).map(([category, services]) => <div key={category}>
                             <div className="px-2 py-1.5 text-sm font-semibold text-gold bg-light-beige/50">
                               {category}
                             </div>
-                            {services.map((service) => (
-                              <SelectItem key={service} value={service} className="pl-4">
+                            {services.map(service => <SelectItem key={service} value={service} className="pl-4">
                                 {service}
-                              </SelectItem>
-                            ))}
-                          </div>
-                        ))}
+                              </SelectItem>)}
+                          </div>)}
                       </SelectContent>
                     </Select>
                   </div>
@@ -271,26 +215,24 @@ Notes: ${formData.notes}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="form-date">Date</Label>
-                      <Input
-                        type="date"
-                        value={formData.date}
-                        onChange={(e) => setFormData({...formData, date: e.target.value})}
-                        min={new Date().toISOString().split('T')[0]}
-                        className="bg-white"
-                      />
+                      <Input type="date" value={formData.date} onChange={e => setFormData({
+                      ...formData,
+                      date: e.target.value
+                    })} min={new Date().toISOString().split('T')[0]} className="bg-white" />
                     </div>
                     <div>
                       <Label htmlFor="form-time">Time</Label>
-                      <Select onValueChange={(value) => setFormData({...formData, time: value})}>
+                      <Select onValueChange={value => setFormData({
+                      ...formData,
+                      time: value
+                    })}>
                         <SelectTrigger className="bg-white">
                           <SelectValue placeholder="Select time" />
                         </SelectTrigger>
                         <SelectContent className="bg-white border shadow-lg">
-                          {timeSlots.map((time) => (
-                            <SelectItem key={time} value={time}>
+                          {timeSlots.map(time => <SelectItem key={time} value={time}>
                               {time}
-                            </SelectItem>
-                          ))}
+                            </SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
@@ -298,53 +240,37 @@ Notes: ${formData.notes}
 
                   <div>
                     <Label htmlFor="form-name">Full Name</Label>
-                    <Input
-                      placeholder="Enter your full name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      required
-                      className="bg-white"
-                    />
+                    <Input placeholder="Enter your full name" value={formData.name} onChange={e => setFormData({
+                    ...formData,
+                    name: e.target.value
+                  })} required className="bg-white" />
                   </div>
 
                   <div>
                     <Label htmlFor="form-phone">Phone Number</Label>
-                    <Input
-                      placeholder="Your phone number"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      required
-                      className="bg-white"
-                    />
+                    <Input placeholder="Your phone number" value={formData.phone} onChange={e => setFormData({
+                    ...formData,
+                    phone: e.target.value
+                  })} required className="bg-white" />
                   </div>
 
                   <div>
                     <Label htmlFor="form-email">Email Address</Label>
-                    <Input
-                      type="email"
-                      placeholder="your.email@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      required
-                      className="bg-white"
-                    />
+                    <Input type="email" placeholder="your.email@example.com" value={formData.email} onChange={e => setFormData({
+                    ...formData,
+                    email: e.target.value
+                  })} required className="bg-white" />
                   </div>
 
                   <div>
                     <Label htmlFor="form-notes">Additional Notes</Label>
-                    <Textarea
-                      placeholder="Any special requests or questions?"
-                      value={formData.notes}
-                      onChange={(e) => setFormData({...formData, notes: e.target.value})}
-                      rows={3}
-                      className="bg-white"
-                    />
+                    <Textarea placeholder="Any special requests or questions?" value={formData.notes} onChange={e => setFormData({
+                    ...formData,
+                    notes: e.target.value
+                  })} rows={3} className="bg-white" />
                   </div>
 
-                  <Button 
-                    type="submit"
-                    className="w-full bg-gold hover:bg-gold/90 text-white py-6 text-lg rounded-full"
-                  >
+                  <Button type="submit" className="w-full bg-gold hover:bg-gold/90 text-white py-6 text-lg rounded-full">
                     <Mail className="mr-2" size={20} />
                     Submit Booking Request
                   </Button>
@@ -375,7 +301,7 @@ Notes: ${formData.notes}
             </div>
             <div>
               <h3 className="font-semibold text-charcoal mb-2">WhatsApp</h3>
-              <p className="text-charcoal/70">+27 123 456 789</p>
+              <p className="text-charcoal/70">+27 60 416 6801</p>
             </div>
           </div>
           <p className="text-charcoal/70">
@@ -383,8 +309,6 @@ Notes: ${formData.notes}
           </p>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Book;
