@@ -20,7 +20,7 @@ const Gallery = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Updated gallery images
+  // Updated gallery images with new uploads
   const galleryImages = [
     "/lovable-uploads/5d70c0b9-b882-430e-8195-dfecebbf9f38.png",
     "/lovable-uploads/f690cf11-3292-491d-91b5-964c8ea97848.png",
@@ -31,7 +31,11 @@ const Gallery = () => {
     "/lovable-uploads/0b31003d-0f77-4db0-b3cd-90627c698981.png",
     "/lovable-uploads/6d5daaaa-7051-4a2f-bc23-9540481abca5.png",
     "/lovable-uploads/7aac1eb8-4dd9-4958-96e2-946e711f3a0c.png",
-    "/lovable-uploads/b43e6c60-6e89-4152-a862-ca55445dfcbb.png"
+    "/lovable-uploads/b43e6c60-6e89-4152-a862-ca55445dfcbb.png",
+    "/lovable-uploads/079a853d-6a9d-4b98-b990-89344ecca654.png",
+    "/lovable-uploads/dbf123d1-10ff-4b4f-8673-fb31308f4a82.png",
+    "/lovable-uploads/912434ed-f1e0-4e10-9cbf-f303b1eca7da.png",
+    "/lovable-uploads/99712cd1-8953-414e-b6e4-ac7bb9f0bcae.png"
   ];
 
   return (
