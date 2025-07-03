@@ -29,49 +29,6 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Component to handle animations
-const AnimationHandler = () => {
-  useEffect(() => {
-    // Optimized intersection observer
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -30px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Reduce delay for faster animations
-          setTimeout(() => {
-            entry.target.classList.add('animate');
-          }, 50);
-          // Stop observing once animated
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Setup animations with debouncing
-    const setupAnimations = () => {
-      const animateElements = document.querySelectorAll('.animate-on-scroll:not(.animate)');
-      animateElements.forEach((el) => {
-        observer.observe(el);
-      });
-    };
-
-    // Initial setup
-    const initialTimeout = setTimeout(setupAnimations, 100);
-    
-    // Cleanup
-    return () => {
-      clearTimeout(initialTimeout);
-      observer.disconnect();
-    };
-  }, []);
-
-  return null;
-};
-
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -80,7 +37,6 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <AnimationHandler />
           <div className="min-h-screen flex flex-col bg-white">
             <Navigation />
             <main className="flex-1">

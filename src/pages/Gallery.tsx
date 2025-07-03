@@ -4,18 +4,18 @@ import { useState } from 'react';
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Real images from H & N House of Beauty work
+  // Updated gallery images
   const galleryImages = [
-    "/lovable-uploads/7aac1eb8-4dd9-4958-96e2-946e711f3a0c.png",
-    "/lovable-uploads/b43e6c60-6e89-4152-a862-ca55445dfcbb.png",
     "/lovable-uploads/5d70c0b9-b882-430e-8195-dfecebbf9f38.png",
-    "/lovable-uploads/d490a04e-835f-4566-8f30-32c210bb63bd.png",
     "/lovable-uploads/f690cf11-3292-491d-91b5-964c8ea97848.png",
     "/lovable-uploads/9d794886-9cd2-4414-99c7-42ab2c02ed88.png",
     "/lovable-uploads/1835a09f-78ee-40a2-9e07-da06d36a59fe.png",
-    "/lovable-uploads/0b31003d-0f77-4db0-b3cd-90627c698981.png",
     "/lovable-uploads/48302d2d-10dd-4801-8b09-a3a0220826d4.png",
-    "/lovable-uploads/6d5daaaa-7051-4a2f-bc23-9540481abca5.png"
+    "/lovable-uploads/d490a04e-835f-4566-8f30-32c210bb63bd.png",
+    "/lovable-uploads/0b31003d-0f77-4db0-b3cd-90627c698981.png",
+    "/lovable-uploads/6d5daaaa-7051-4a2f-bc23-9540481abca5.png",
+    "/lovable-uploads/7aac1eb8-4dd9-4958-96e2-946e711f3a0c.png",
+    "/lovable-uploads/b43e6c60-6e89-4152-a862-ca55445dfcbb.png"
   ];
 
   return (
@@ -23,11 +23,11 @@ const Gallery = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-b from-light-beige/30 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-playfair font-bold text-charcoal mb-6 animate-on-scroll">
+          <h1 className="text-4xl md:text-6xl font-playfair font-bold text-charcoal mb-6">
             Gallery
           </h1>
           <div className="gold-divider"></div>
-          <p className="text-xl text-charcoal/70 max-w-3xl mx-auto animate-on-scroll">
+          <p className="text-xl text-charcoal/70 max-w-3xl mx-auto">
             Explore our work and see the beautiful transformations we create for our valued clients.
           </p>
         </div>
@@ -40,7 +40,7 @@ const Gallery = () => {
             {galleryImages.map((image, index) => (
               <div 
                 key={index} 
-                className="animate-on-scroll cursor-pointer group"
+                className="cursor-pointer group"
                 onClick={() => setSelectedImage(image)}
               >
                 <div className="aspect-square overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
@@ -48,7 +48,7 @@ const Gallery = () => {
                     src={image}
                     alt={`Gallery image ${index + 1} - H & N House of Beauty work`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
+                    loading="eager"
                   />
                 </div>
               </div>
