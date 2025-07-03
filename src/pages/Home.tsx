@@ -43,9 +43,11 @@ const Home = () => {
                 <Button asChild className="bg-gold hover:bg-gold/90 text-white px-8 py-6 text-lg rounded-full">
                   <Link to="/book">Book Appointment</Link>
                 </Button>
-                <Button variant="ghost" className="text-gold hover:text-gold/80 px-8 py-6 text-lg">
-                  <Play className="mr-2" size={20} />
-                  Explore
+                <Button asChild variant="ghost" className="text-gold hover:text-gold/80 px-8 py-6 text-lg">
+                  <Link to="/services">
+                    <Play className="mr-2" size={20} />
+                    Explore
+                  </Link>
                 </Button>
               </div>
             </div>
