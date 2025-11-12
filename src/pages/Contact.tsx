@@ -86,10 +86,14 @@ ${formData.message}
               <CardContent className="pt-6">
                 <Phone className="w-8 h-8 text-gold mx-auto mb-4 hover:scale-110 transition-transform duration-300" />
                 <h3 className="font-playfair font-semibold text-charcoal mb-2">Call Us</h3>
-                <p className="text-charcoal/70 text-sm">
-                  063 859 2913<br />
-                  <span className="text-xs">WhatsApp: 060 416 6801</span>
-                </p>
+                <div className="text-charcoal/70 text-sm space-y-1">
+                  <a href="https://wa.me/27638592913" target="_blank" rel="noopener noreferrer" className="block hover:text-gold transition-colors">
+                    063 859 2913
+                  </a>
+                  <a href="https://wa.me/27604166801" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-gold transition-colors block">
+                    WhatsApp: 060 416 6801
+                  </a>
+                </div>
               </CardContent>
             </Card>
 
