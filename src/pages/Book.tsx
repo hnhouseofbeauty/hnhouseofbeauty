@@ -47,7 +47,7 @@ ${formData.phone ? `Phone: ${formData.phone}` : ''}
 ${formData.notes ? `Notes: ${formData.notes}` : ''}
 
 Please confirm my appointment. Thank you!`;
-    const whatsappUrl = `https://wa.me/+27123456789?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/27604166801?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
   const handleFormSubmit = (e: React.FormEvent) => {

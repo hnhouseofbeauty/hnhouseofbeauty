@@ -175,7 +175,7 @@ const Home = () => {
             Book your appointment on WhatsApp for instant confirmation
           </p>
           <Button asChild className="bg-white text-gold hover:bg-white/90 px-8 py-6 text-lg rounded-full font-semibold transform hover:scale-105 transition-all duration-300">
-            <a href="https://wa.me/+27123456789?text=Hi, I'd like to book an appointment at H & N House of Beauty" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/27604166801?text=Hi, I'd like to book an appointment at H & N House of Beauty" target="_blank" rel="noopener noreferrer">
               Book on WhatsApp
             </a>
           </Button>
