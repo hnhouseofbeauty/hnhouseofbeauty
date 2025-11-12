@@ -48,8 +48,12 @@ const Footer = () => {
             <div className="space-y-2 text-charcoal/70">
               <p>106 Hennie Alberts Street</p>
               <p>Brackenhurst, Alberton</p>
-              <p>Phone: 063 859 2913</p>
-              <p>WhatsApp: 060 416 6801</p>
+              <p>
+                Phone: <a href="https://wa.me/27638592913" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">063 859 2913</a>
+              </p>
+              <p>
+                WhatsApp: <a href="https://wa.me/27604166801" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">060 416 6801</a>
+              </p>
               <p>Email: hnhouseofbeauty@gmail.com</p>
             </div>
           </div>
